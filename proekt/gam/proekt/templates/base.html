@@ -1,0 +1,145 @@
+{% load static %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/css/bootstrap.min.css">
+
+    <title></title>
+
+  <style>
+    .col{
+      text-align: center;
+    }
+
+    .firts{
+      height: 700px;
+    }
+
+   
+    .d-flex-justify-content-between{
+      align-content: center;
+    }
+
+    .card{
+      border: none;
+    }
+
+    .scale {
+      transition: 1s; /* Время эффекта */
+    }
+   .scale:hover {
+      transform: scale(1.2); /* Увеличиваем масштаб */
+    }
+
+    .layer1 {
+      background-color: #fc0; /* Цвет фона слоя */
+      padding: 5px; /* Поля вокруг текста */
+      float: left; /* Обтекание по правому краю */
+      width: 200px; /* Ширина слоя */
+    }
+    .layer2 {
+      background-color: #c0c0c0; /* Цвет фона слоя */
+      padding: 5px; /* Поля вокруг текста */
+      width: 300px; /* Ширина слоя */
+      float: left; /* Обтекание по правому краю */
+    }
+
+    .box1{
+      flex-shrink: 1;
+      width: 40%;
+      align-content:flex-end;
+      padding-left: 3%;
+      padding-top: 3%;
+
+    }
+
+    .box2{
+      flex-shrink: 2;
+      width: 60%;
+      align-content: left;
+      padding-left: 3%;
+      padding-top: 3%;
+
+    }
+
+    .content {
+    display: flex;
+    width: 100%;
+    }
+
+
+  .sheet{
+    padding: 7%;
+    height: 700px;
+  }
+
+  .site-header{
+    background-color: #fc6d98;
+  }
+
+  .text-muted{
+    background-color: #fc6d98;
+
+  }
+
+  .lalala{
+    background-image: url("../static/img/photo_2021-08-19_16-06-23.jpg");
+    background-repeat: no-repeat;
+    background-position: center
+  }
+  .py-2{
+    color: black;
+    text-decoration: none;
+  }
+
+  .ones{
+    text-decoration: none;
+    color: black;
+  }
+
+  .cont{
+  height: 700px;
+
+  }
+
+  </style>
+</head>
+<body class="lalala">
+    <header class="site-header sticky-top py-1">
+        <nav class="container d-flex flex-column flex-md-row justify-content-between">
+          <a class="py-2" href="#" aria-label="Product">
+            <a href="https://instagram.com/dial_box.by?utm_medium=copy_link" target="_blank" rel="noopener"> 
+              <svg class="t-sociallinks__svg" version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" 
+              xmlns:xlink="http://www.w3.org/1999/xlink" width="30px" height="30px" viewBox="0 0 30 30" 
+              xml:space="preserve"><desc>Instagram</desc><path style="fill:black;" 
+              d="M15,11.014 C12.801,11.014 11.015,12.797 11.015,15 C11.015,17.202 12.802,18.987 15,18.987 C17.199,18.987 18.987,17.202 18.987,15 C18.987,12.797 17.199,11.014 15,11.014 L15,11.014 Z M15,17.606 C13.556,17.606 12.393,16.439 12.393,15 C12.393,13.561 13.556,12.394 15,12.394 C16.429,12.394 17.607,13.561 17.607,15 C17.607,16.439 16.444,17.606 15,17.606 L15,17.606 Z"></path>
+              <path style="fill:black;" d="M19.385,9.556 C18.872,9.556 18.465,9.964 18.465,10.477 C18.465,10.989 18.872,11.396 19.385,11.396 C19.898,11.396 20.306,10.989 20.306,10.477 C20.306,9.964 19.897,9.556 19.385,9.556 L19.385,9.556 Z"></path>
+              <path style="fill:black;" d="M15.002,0.15 C6.798,0.15 0.149,6.797 0.149,15 C0.149,23.201 6.798,29.85 15.002,29.85 C23.201,29.85 29.852,23.202 29.852,15 C29.852,6.797 23.201,0.15 15.002,0.15 L15.002,0.15 Z M22.666,18.265 C22.666,20.688 20.687,22.666 18.25,22.666 L11.75,22.666 C9.312,22.666 7.333,20.687 7.333,18.28 L7.333,11.734 C7.333,9.312 9.311,7.334 11.75,7.334 L18.25,7.334 C20.688,7.334 22.666,9.312 22.666,11.734 L22.666,18.265 L22.666,18.265 Z"></path></svg> 
+            </a>
+            
+          <a class="py-2 d-md-inline-block" href="{% url 'home' %}">О Нас</a>
+          <a class="py-2 d-none d-md-inline-block" href="{% url 'product' %}">Продукция</a>
+          <a class="py-2 d-none d-md-inline-block" href="{% url 'add' %}">Корзина</a>
+        </nav>
+
+      
+      </header>
+
+      {% block content %} {% endblock %}
+
+
+      <footer class="text-muted py-5">
+        <div class="container">
+          <p class="float-end mb-1">
+            <a href="#">myaw</a>
+          </p>
+          <p class="mb-0">Made by lllll.</p>
+        </div>
+      </footer>
+</body>
+</html>

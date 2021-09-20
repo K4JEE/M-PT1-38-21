@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %}
+{{ title }}
+{% endblock %}
+
+{% block content %}
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3 p-5">
+        
+    {% for product in products %}
+        <div class="col">
+            <div class="card shadow-sm">
+                
+                <p class=img><a href="{% url 'detail' product.id %}"><img width="50%" src="{{ product.photo.url }}" class="scale">
+                </a></p>
+
+              </div>
+              <div class="card-body">
+                <p class="card-text"><b>{{ product.title }}</b></p>              
+                <div class="d-flex-justify-content-between">
+                  <div class="btn-group">
+                    <a href="{% url 'detail' product.id %}"> <button type="button" class="btn btn-sm btn-outline-secondary">Просмотреть</button></a>
+                    <button type="button" class="btn btn-sm btn-outline-secondary"><a href="{% url 'add' %}" class="ones">Купить</a></button>
+                  </div>
+                </div>
+              </div>
+        
+        </div>      
+    {% endfor %}
+    </div> 
+{% endblock %}
