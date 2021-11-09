@@ -1,0 +1,3 @@
+*req.txt
+/__pycache__
+*.env

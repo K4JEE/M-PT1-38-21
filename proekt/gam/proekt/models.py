@@ -1,12 +1,11 @@
 from django.db import models
-from django.db.models.fields.files import ImageField
 
 
 class Product(models.Model):
     
-    title = models.CharField('название продукта', max_length=40)
+    title = models.CharField('name product', max_length=40)
     photo = models.ImageField(upload_to='uploads')
-    content = models.TextField('описание')
+    content = models.TextField('description')
     price = models.DecimalField(max_digits=10, decimal_places=2)
 
 
@@ -14,8 +13,8 @@ class Product(models.Model):
         return self.title
 
     class Meta:
-        verbose_name= 'Товар'
-        verbose_name_plural= 'Товары'
+        verbose_name= 'product'
+        verbose_name_plural= 'products'
 
 
 class Order(models.Model):

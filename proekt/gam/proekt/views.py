@@ -1,40 +1,47 @@
 from django.shortcuts import render, redirect
-from .models import Product, Order
-from .forms import OrderForm
+from proekt.models import Product as ProductModel
+from proekt.models import Order
+from proekt.forms import OrderForm
+from django.views.generic import View
+from django.shortcuts import get_object_or_404
 
 
+class Home(View):
+    def get(self,request):
+        return render(request, 'home.html')
 
-def home (request):
-    return render(request, 'home.html')
 
-def product(request):
-    products=Product.objects.all()
-    return render(request, 'product.html', {'title': 'Станица с продукцией', 'products': products})
+class Product(View):
+    def get(self, request):
+        products=ProductModel.objects.all()
+        return render(request, 'product.html', {'title': 'Станица с продукцией', 'products': products})
 
-def detail(request, product_id):
-    detail = Product.objects.get(id = product_id)
-    return render(request, "detail.html",{'detail': detail})
+class Detail(View):
+    def get(self, request, product_id):
+        detail = get_object_or_404(ProductModel, id = product_id )
+        return render(request, "detail.html",{'detail': detail})
 
-def add(request):
 
-    if request.method == "POST":
+class Add(View):
+    def get(self, request):
 
         form = OrderForm(request.POST, request.FILES)
+        if request.method == "POST":
 
-        if form.is_valid():
+            if form.is_valid():
 
-            order = Order()
+                order = Order()
             
-            order.name = form.cleaned_data['name']
-            order.surname = form.cleaned_data['surname']
-            order.email = form.cleaned_data['email']
-            order.address = form.cleaned_data['address']
+                order.name = form.cleaned_data['name']
+                order.surname = form.cleaned_data['surname']
+                order.email = form.cleaned_data['email']
+                order.address = form.cleaned_data['address']
 
 
-            order.save()
+                order.save()
 
-            return redirect('order_done')
-    else:
-        form = OrderForm()
+                return redirect('order_done')
+            else:
+                form = OrderForm()
 
-    return render(request, 'add.html', {'add':add})
+        return render(request, 'add.html')
