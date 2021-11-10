@@ -3,25 +3,21 @@ from proekt.models import Product as ProductModel
 from proekt.models import Order
 from proekt.forms import OrderForm
 from django.views.generic import View
-from django.shortcuts import get_object_or_404
+from proekt.utils import *
 
-
-class Home(View):
-    def get(self,request):
-        return render(request, 'home.html')
-
+class Home(ObjectHomeMixin, View):
+    template = 'home.html'
 
 class Product(View):
     def get(self, request):
-        products=ProductModel.objects.all()
-        return render(request, 'product.html', {'title': 'Станица с продукцией', 'products': products})
+        products=ProductModel.objects.get()
+        return render(request, 'product.html', {'products': products})
 
-class Detail(View):
-    def get(self, request, product_id):
-        detail = get_object_or_404(ProductModel, id = product_id )
-        return render(request, "detail.html",{'detail': detail})
+class Detail(ObjectDetailMixin,View):
+    model = ProductModel
+    template = "detail.html"
 
-
+ 
 class Add(View):
     def get(self, request):
 
