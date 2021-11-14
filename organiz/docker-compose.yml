@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  db:
+    image: postgres
+    volumes:
+      - db_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_PASSWORD: os.getenev('PASSWORD')
+      POSTGRES_USER: os.getenev('USER')
+  web:
+    
+    build: .
+    command: bash -c "python /usr/src/organiz/manage.py migrate --noinput && python /usr/src/organiz/manage.py runserver 0.0.0.0:8000"
+    
+    volumes:
+      - ./:/usr/src/organiz 
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    
+volumes:
+  db_data:
